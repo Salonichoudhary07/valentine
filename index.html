@@ -37,7 +37,6 @@ display: flex;
 justify-content: space-between;
 gap: 10px;
 height: 130px;
-position: relative;
 }
 
 .no-area,
@@ -105,7 +104,7 @@ to { transform: translateY(-220px); opacity: 0; }
 
 <div class="buttons">
 <div class="no-area">
-<button id="noBtn">No 😒</button>
+<button id="noBtn">No 🙁</button>
 </div>
 <div class="yes-area">
 <button id="yesBtn">Yes 😍</button>
@@ -116,7 +115,6 @@ to { transform: translateY(-220px); opacity: 0; }
 <script>
 const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
-const card = document.getElementById("card");
 
 const noTexts = [
 "No 🙁",
@@ -129,20 +127,16 @@ const noTexts = [
 let shrink = 1;
 let textIndex = 0;
 
-// 🔊 Sound (no external files)
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
 function playBeep(freq, duration) {
 const osc = audioCtx.createOscillator();
 const gain = audioCtx.createGain();
-
 osc.connect(gain);
 gain.connect(audioCtx.destination);
-
 osc.frequency.value = freq;
 osc.type = "square";
 gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
-
 osc.start();
 setTimeout(() => osc.stop(), duration);
 }
@@ -179,27 +173,17 @@ playBeep(300, 200);
 playBeep(500, 300);
 vibrate([200, 100, 200]);
 
-card.innerHTML = `
-<h1>YAYYY 💖🥰</h1>
-<p>I knew you’d say yes 💘</p>
-`;
-card.classList.add("celebrate");
+// 👇 CHANGE THIS NUMBER
+const phoneNumber = "918447114074";
 
-for (let i = 0; i < 36; i++) {
-createHeart();
-}
+// 👇 PICK YOUR FAV MESSAGE
+const message = encodeURIComponent(
+"Yes... always yes🥰💘"
+);
+
+window.location.href =
+`https://wa.me/${phoneNumber}?text=${message}`;
 });
-
-function createHeart() {
-const heart = document.createElement("div");
-heart.className = "heart";
-heart.textContent = "💖";
-heart.style.left = Math.random() * 100 + "vw";
-heart.style.top = "100vh";
-document.body.appendChild(heart);
-
-setTimeout(() => heart.remove(), 2000);
-}
 </script>
 
 </body>
