@@ -57,19 +57,27 @@ gap: 20px;
 }
 
 button {
-border: none;
-padding: 14px 22px;
-border-radius: 999px;
-font-size: 16px;
-font-weight: 700;
-cursor: pointer;
-white-space: nowrap;
-background: none;
-color: #000;
-appearance: none;
--webkit-appearance: none;
-transition: transform 0.15s;
+  border: none;
+  padding: 14px 22px;
+  border-radius: 999px;
+  font-size: 16px;
+
+  /* 🔥 ADD / ENSURE THESE */
+  font-weight: 700;
+  font-style: normal;
+  color: #000;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+
+  cursor: pointer;
+  white-space: nowrap;
+  background: none;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-fill-color: #000; /* iOS fix */
+  transition: transform 0.15s;
 }
+
 
 #yes {
 background: #e75480;
@@ -121,8 +129,8 @@ opacity: 0;
 <div class="heart">💘</div>
 
 <div class="buttons">
-<button id="no">No 😢</button>
-<button id="yes">Yes 😍</button>
+<button id="no">No 🙁</button>
+<button id="yes">Yes 💕</button>
 </div>
 </div>
 
@@ -134,10 +142,9 @@ const noMessages = [
 "Are you sure? 🥺",
 "Think again 😭",
 "Please?? 💔",
-"My heart is very soft 💔",
 "Last chance… maybe 😶",
 "You’re still trying?? 😵‍💫",
-"That hurt 😤",
+"That hurts 😤",
 "WHY 😵‍💫"
 ];
 
@@ -196,7 +203,7 @@ vibrate([200, 100, 200]);
 launchConfetti();
 
 const phoneNumber = "918447114074"; // 👈 change this
-const message = "I said YES 💖";
+const message = "Yes... always yes 🥰💖";
 
 setTimeout(() => {
 window.location.href =
