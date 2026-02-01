@@ -33,20 +33,12 @@ z-index: 2;
 
 h1 {
 color: #e75480;
-margin-bottom: 8px;
-}
-
-.subtext {
-min-height: 24px;
-color: #c94a6a;
-font-size: 14px;
-margin-bottom: 18px;
-transition: all 0.2s ease;
+margin-bottom: 20px;
 }
 
 .heart {
 font-size: 32px;
-margin-bottom: 18px;
+margin-bottom: 25px;
 animation: beat 1s infinite;
 }
 
@@ -65,10 +57,11 @@ position: relative;
 
 button {
 border: none;
-padding: 14px 24px;
+padding: 14px 22px;
 border-radius: 999px;
-font-size: 16px;
+font-size: 15px;
 cursor: pointer;
+white-space: nowrap;
 transition: transform 0.2s;
 }
 
@@ -80,6 +73,7 @@ color: white;
 #no {
 background: #e0e0e0;
 position: relative;
+min-width: 90px;
 }
 
 .confetti-heart {
@@ -104,30 +98,32 @@ opacity: 0;
 <body>
 
 <div class="card">
-<h1 id="title">Will you be my Valentine?</h1>
-<div class="subtext" id="subtext"></div>
+<h1>Will you be my Valentine?</h1>
 <div class="heart">💘</div>
 
 <div class="buttons">
-<button id="no">No 🙁</button>
-<button id="yes">Yes 💕</button>
+<button id="no">No 😢</button>
+<button id="yes">Yes 😍</button>
 </div>
 </div>
 
 <script>
 const noBtn = document.getElementById("no");
 const yesBtn = document.getElementById("yes");
-const subtext = document.getElementById("subtext");
 
 const noMessages = [
 "Are you sure? 🥺",
 "Think again 😭",
+"Please?? 💔",
 "My heart is very soft 💔",
 "Last chance… maybe 😶",
-"You’re still trying?? 😵‍💫"
+"You’re still trying?? 😵‍💫",
+"That hurt 😤",
+"WHY 😵‍💫"
 ];
 
 let noCount = 0;
+let resetTimeout;
 
 function vibrate(pattern) {
 if (navigator.vibrate) navigator.vibrate(pattern);
@@ -140,11 +136,18 @@ const y = Math.random() * 120 - 60;
 noBtn.style.transform =
 `translate(${x}px, ${y}px) rotate(${Math.random()*20-10}deg)`;
 
-subtext.innerText =
+// Change button text
+noBtn.innerText =
 noMessages[Math.min(noCount, noMessages.length - 1)];
 
 noCount++;
 vibrate(40);
+
+// Reset text if user stops interacting
+clearTimeout(resetTimeout);
+resetTimeout = setTimeout(() => {
+noBtn.innerText = "No 😢";
+}, 1200);
 }
 
 noBtn.addEventListener("mouseover", moveNoButton);
@@ -170,8 +173,8 @@ yesBtn.addEventListener("click", () => {
 vibrate([200, 100, 200]);
 launchConfetti();
 
-const phoneNumber = "918447114074"; // 👈 change this
-const message = "Yes... always yes 🥰💖";
+const phoneNumber = "91XXXXXXXXXX"; // 👈 change this
+const message = "I said YES 💖";
 
 setTimeout(() => {
 window.location.href =
